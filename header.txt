@@ -7,9 +7,10 @@
 // Website       : https://www.vlsidesignhub.app
 // Last Updated  : [Date]
 //===========================================================
-// Redistribution and use in source and binary forms are unpermitted
-// provided that the above copyright notice and this permission notice
-// appear in all copies or substantial portions of the file.
+// Redistribution and use in source and binary forms are NOT permitted
+// except with explicit written permission from VLSI Design Hub.
+// All copies or substantial portions of this file must include
+// the above copyright notice and this permission notice.
 //
 // Revision History:
 //
