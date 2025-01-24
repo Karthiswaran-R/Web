@@ -1,0 +1,19 @@
+//===========================================================
+// Company       : VLSI Design Hub
+// File          : vlsidesignhub_header.v
+// Description   : Standard header file for VLSI Design Hub projects
+// Author        : [Your Name]
+// Email         : contact@vlsidesignhub.com
+// Website       : https://www.vlsidesignhub.app
+// Last Updated  : [Date]
+//===========================================================
+// Redistribution and use in source and binary forms are unpermitted
+// provided that the above copyright notice and this permission notice
+// appear in all copies or substantial portions of the file.
+//
+// Revision History:
+//
+// Version | Author       | Date       | Changes Made
+// -------------------------------------------------------
+// 1.0     | [Your Name]  | [Date]     | Initial release
+//===========================================================
