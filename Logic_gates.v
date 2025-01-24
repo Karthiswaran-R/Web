@@ -2,10 +2,10 @@
 // Company       : VLSI Design Hub
 // File          : Logic_gates.v
 // Description   : Implementation of 12 basic logic gates
-// Author        : Karthiswaran
+// Author        : Karthiswaran.R
 // Email         : contact@vlsidesignhub.com
 // Website       : https://www.vlsidesignhub.app
-// Last Updated  : Jan 13, 2025
+// Last Updated  : 13/01/2025
 //===========================================================
 // Redistribution and use in source and binary forms are NOT permitted
 // except with explicit written permission from VLSI Design Hub.
