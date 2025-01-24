@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux & Verilog Basics</title>
+</head>
+<body>
+    <h1 style="text-align:center;">Linux & Verilog Basics</h1>
+    <h2>Basic Linux Commands</h2>
+    <p>Linux is a powerful operating system commonly used for development and server management. Here are some basic commands that you should know:</p>
+    <pre>
+$ ls                # List files in a directory
+$ cd <directory>    # Change to a specific directory
+$ mkdir <folder>    # Create a new directory
+$ rm <file>         # Remove a file
+$ rmdir <folder>    # Remove an empty directory
+$ cp <source> <dest># Copy files or directories
+$ mv <source> <dest># Move or rename files or directories
+$ pwd               # Print the current working directory
+$ touch <file>      # Create a new empty file
+$ cat <file>        # Display the contents of a file
+$ nano <file>       # Open file in nano editor
+$ gcc <file.c>      # Compile a C program
+$ ./a.out           # Run a compiled C program
+$ ps                # Display running processes
+$ top               # Display system processes and resource usage
+    </pre>
+    <h2>Basic Verilog Commands and Usage</h2>
+    <p>Verilog is a hardware description language used to model electronic systems. Here are some basic Verilog commands and tasks:</p>
+    <pre>
+$ vlogan <file.v>  # Compile Verilog files with Synopsys Design Compiler or other tools
+$ vlog <file.v>    # Compile Verilog files with ModelSim
+$ vsim <top_module> # Simulate the top module with ModelSim
+$ vcom <file.vhd>  # Compile VHDL files with ModelSim (if needed)
+$ vsim -do <script.tcl>  # Run simulations with a TCL script
+$ iverilog <file.v> # Compile Verilog files with Icarus Verilog
+$ vvp <file.vvp>   # Run simulation with Icarus Verilog
+$ gtkwave <file.vcd> # View simulation waveform with GTKWave
+$ xelab <design>   # Compile with Xilinx ISE
+$ xsim <design>    # Run simulation with Xilinx Vivado
+    </pre>
+    <h2>Verilog Simulation Workflow</h2>
+    <p>Here’s a basic workflow when working with Verilog simulations:</p>
+    <ul>
+        <li>Write the Verilog code for your module (e.g., <strong>module.v</strong>).</li>
+        <li>Compile the Verilog code using your simulator (e.g., ModelSim, Icarus Verilog, or Vivado).</li>
+        <li>Write a testbench to simulate your module’s behavior.</li>
+        <li>Run the simulation and observe the results (e.g., using GTKWave for waveform viewing).</li>
+    </ul>
+</body>
+</html>
