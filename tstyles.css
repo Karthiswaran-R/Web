@@ -1,9 +1,8 @@
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
+    margin-top: 2rem;
     background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 header {
@@ -28,13 +27,6 @@ footer {
 }
 p {
     white-space: nowrap;
-}
-.procedure {
-    margin-top: 2rem;
-    background: #fff;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 .procedure h2 {
     color: #4b6cb7;
