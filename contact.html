@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="Styles.css">
+    <title>Contact Us - Verilog VLSI Design Hub</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Contact Us</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="linux.html">Linux</a>
-            <a href="tools.html">Tools</a>
-            <a href="projects.html">Projects</a>
-            <a href="library.html">Library</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    <main>
-        <h2>Get in Touch</h2>
-        <p>Email: vlsidesignhub@gmail.com</p>
-    </main>
-    <footer>
-        <p>&copy; 2025 VLSI Design Hub</p>
-    </footer>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
+        <form id="contact-form" action="submit_form.php" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
