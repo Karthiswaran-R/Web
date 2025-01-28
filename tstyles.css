@@ -28,3 +28,24 @@ footer {
 p {
     white-space: nowrap;
 }
+.procedure {
+    margin-top: 2rem;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.procedure h2 {
+    color: #4b6cb7;
+    margin-bottom: 1rem;
+}
+.procedure ol {
+    margin-left: 1.5rem;
+    line-height: 1.8;
+}
+.procedure code {
+    background: #f4f4f9;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.95rem;
+}
