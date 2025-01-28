@@ -1,5 +1,5 @@
 body {
-    margin-top: 2rem;
+    margin-top: 1rem;
     background: #fff;
     padding: 2rem;
     border-radius: 10px;
@@ -29,7 +29,7 @@ p {
     white-space: nowrap;
 }
 .procedure h2 {
-    color: #4b6cb7;
+    color: black;
     margin-bottom: 1rem;
 }
 .procedure ol {
