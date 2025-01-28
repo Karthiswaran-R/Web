@@ -90,6 +90,39 @@ Feel free to install any necessary tools or configurations based on your project
         </ul>
         <h2>Installing Synopsys Tools</h2>
         <p>Contact your university or organization to get access to Synopsys tools and follow the provided installation instructions.</p>
+         <h2><section>
+    <h2>Install Icarus Verilog, GTKWave, and GVim</h2>
+
+    <h3>1. Installing Icarus Verilog</h3>
+    <ol>
+        <li>Open your terminal.</li>
+        <li>Install the package using: <code>sudo apt-get install iverilog</code></li>
+        <li>Verify the installation by running: <code>iverilog -v</code></li>
+    </ol>
+
+    <h3>2. Installing GTKWave</h3>
+    <ol>
+        <li>Open your terminal.</li>
+        <li>Install GTKWave using: <code>sudo apt-get install gtkwave</code></li>
+        <li>Check installation by running: <code>gtkwave</code></li>
+    </ol>
+
+    <h3>3. Installing GVim</h3>
+    <ol>
+        <li>Open your terminal.</li>
+        <li>Install GVim using: <code>sudo apt-get install vim-gtk</code></li>
+        <li>Launch GVim by running: <code>gvim</code></li>
+    </ol>
+</section>
+    </h2>
+    <h3>Verilog Simulation Workflow</h3>
+    <p>Here’s a basic workflow when working with Verilog simulations:</p>
+    <ul>
+        <li>Write the Verilog code for your module (e.g., <strong>module.v</strong>).</li>
+        <li>Compile the Verilog code using your simulator (e.g., ModelSim, Icarus Verilog, or Vivado).</li>
+        <li>Write a testbench to simulate your module’s behavior.</li>
+        <li>Run the simulation and observe the results (e.g., using GTKWave for waveform viewing).</li>
+    </ul>
     </main>
     <footer>
         <p>&copy; 2025 VLSI Design Hub</p>
