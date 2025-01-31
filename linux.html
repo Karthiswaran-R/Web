@@ -40,21 +40,16 @@ $ top               # Display system processes and resource usage
     </pre>
     <h2>Basic Verilog Commands and Usage</h2>
     <p>Verilog is a hardware description language used to model electronic systems. Here are some basic Verilog commands and tasks:</p>
-    <li>
-    <ol>
-        <pre>
+    <pre>
 $ vlogan <file.v>   # Compile Verilog files with Synopsys Design Compiler or other tools
 $ vlog <file.v>     # Compile Verilog files with ModelSim
 $ vsim <top_module> # Simulate the top module with ModelSim
 $ vcom <file.vhd>   # Compile VHDL files with ModelSim (if needed)
 $ vsim -do <script.tcl>   # Run simulations with a TCL script
-$ iverilog <file.v>      # Compile Verilog files with Icarus Verilog
+$ iverilog <file.v> -o m1     # Compile Verilog files with Icarus Verilog
 $ vvp <file.vvp>        # Run simulation with Icarus Verilog
 $ gtkwave <file.vcd>    # View simulation waveform with GTKWave
-$ xelab <design>       # Compile with Xilinx ISE
-$ xsim <design>        # Run simulation with Xilinx Vivado
     </pre>
-</ol></li>
     </main>
     <footer>
         <p>&copy; 2025 VLSI Design Hub</p>
