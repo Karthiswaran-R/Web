@@ -25,24 +25,6 @@ footer {
     color: white;
     padding: 10px 0;
 }
-/* General Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-/* Body and Background */
-body {
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-/* Contact Form Container */
 .contact-container {
     background-color: #fff;
     padding: 20px;
@@ -51,27 +33,21 @@ body {
     width: 100%;
     max-width: 500px;
 }
-
-/* Heading */
 .contact-container h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
 }
-
-/* Form Elements */
 .form-group {
     margin-bottom: 15px;
 }
-
 .form-group label {
     display: block;
     font-size: 14px;
     font-weight: bold;
     color: #555;
 }
-
 .form-group input, .form-group textarea {
     width: 100%;
     padding: 10px;
@@ -84,8 +60,6 @@ body {
 .form-group textarea {
     resize: vertical;
 }
-
-/* Button */
 .submit-btn {
     width: 100%;
     padding: 12px;
