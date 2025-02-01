@@ -17,23 +17,23 @@
         </nav>
     </header>
     <div class="contact-container">
-        <h1 class="center-text"><strong>Contact Us - Verilog VLSI Design Hub</strong></h1>
-        <h2 class="center-text">Get in Touch</h2>
+        <h1 class="center-text">Contact Us</h1>
         <form id="contact-form" action="submit_form.php" method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" aria-label="Enter your name" required>
+                <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
                 <label for="email">Email:</label>
-                <input type="email" id="email" name="email" aria-label="Enter your email" required>
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
                 <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" aria-label="Enter your message" required></textarea>
+                <textarea id="message" name="message" rows="5" required></textarea>
             </div>
             <button type="submit" class="submit-btn">Submit</button>
         </form>
+        <p id="form-status"></p>
     </div>
     <footer>
         <p>&copy; 2025 VLSI Design Hub. All rights reserved.</p>
@@ -43,6 +43,7 @@
             var name = document.getElementById("name").value.trim();
             var email = document.getElementById("email").value.trim();
             var message = document.getElementById("message").value.trim();
+
             if (name === "" || email === "" || message === "") {
                 alert("All fields are required!");
                 event.preventDefault();
