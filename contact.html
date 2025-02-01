@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - VLSI Design Hub</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,39 +17,19 @@
             <a href="contact.html">Contact</a>
         </nav>
     </header>
-    <div class="contact-container">
-        <h1 class="center-text">Contact Us</h1>
-        <form id="contact-form" action="submit_form.php" method="POST">
-            <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Submit</button>
-        </form>
-        <p id="form-status"></p>
-    </div>
+    <main class="contact-container">
+        <h1>Contact Us</h1>
+        <p>Have questions? Reach out to us via email, and we'll get back to you as soon as possible!</p>
+        <div class="contact-box">
+            <h2>📩 Get in Touch</h2>
+            <p>Click the button below to send us an email:</p>
+            <a href="mailto:support@yourcompany.com">
+                <button class="email-btn">Email Us</button>
+            </a>
+        </div>
+    </main>
     <footer>
         <p>&copy; 2025 VLSI Design Hub. All rights reserved.</p>
     </footer>
-    <script>
-        document.getElementById("contact-form").addEventListener("submit", function(event) {
-            var name = document.getElementById("name").value.trim();
-            var email = document.getElementById("email").value.trim();
-            var message = document.getElementById("message").value.trim();
-
-            if (name === "" || email === "" || message === "") {
-                alert("All fields are required!");
-                event.preventDefault();
-            }
-        });
-    </script>
 </body>
 </html>
