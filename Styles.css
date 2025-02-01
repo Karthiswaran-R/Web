@@ -1,25 +1,11 @@
 body {
     background-color: #121212;
-    background-image: url('https://w0.peakpx.com/wallpaper/218/861/HD-wallpaper-s20-ultra-android-circuit-board-galaxy-motherboard-s20-ultra-tech-thumbnail.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     color: white;
-    position: relative;
+    font-family: Arial, sans-serif;
+    padding-top: 50px; 
 }
-body::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-}
-
 header {
-    background: rgba(51, 51, 51, 0.8);
+    background: #333;
     color: white;
     padding: 10px 0;
     text-align: center;
@@ -34,7 +20,7 @@ main {
 }
 footer {
     text-align: center;
-    background: rgba(51, 51, 51, 0.8);
+    background: #333;
     color: white;
     padding: 10px 0;
 }
