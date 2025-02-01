@@ -9,10 +9,13 @@
     <link rel="stylesheet" href="Styles.css">
 </head>
 <body>
-    <header>
-        <h1>Tools for VLSI Design</h1>
-        <nav>
-                <ul class="nav justify-content-center">
+    <header class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <h1>Tools for VLSI Design</h1>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
                     <li class="nav-item"><a href="linux.html" class="nav-link text-white"><i class="fab fa-linux"></i> Linux</a></li>
                     <li class="nav-item"><a href="tools.html" class="nav-link text-white"><i class="fas fa-tools"></i> Tools</a></li>
@@ -20,90 +23,98 @@
                     <li class="nav-item"><a href="library.html" class="nav-link text-white"><i class="fas fa-book"></i> Library</a></li>
                     <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
                 </ul>
-            </nav>
+            </div>
+        </nav>
     </header>
-    <main>
-        <h2>Setting Up Linux</h2>
-        <p>Follow these steps to install Linux using VirtualBox:</p>
-        <h3>Prerequisites:</h3>
-        <ul>
-            <li>VirtualBox installed on your system.</li>
-            <li>Ubuntu ISO file (download it from Ubuntu's official website).</li>
-        </ul>
-        <h3>Steps to Install Ubuntu in VirtualBox:</h3>
-        <ol>
-            <li><strong>Download and Install VirtualBox:</strong>
-                <ul>
-                    <li>Download VirtualBox from the official website.</li>
-                    <li>Run the installer and follow the installation instructions.</li>
-                </ul>
-            </li>
-            <li><strong>Create a New Virtual Machine:</strong>
-                <ul>
-                    <li>Open VirtualBox and click "New".</li>
-                    <li>Name it (e.g., "Ubuntu"), select Linux as type, and Ubuntu (64-bit) as version.</li>
-                </ul>
-            </li>
-            <li><strong>Set Memory (RAM):</strong>
-                <ul>
-                    <li>Assign 2048 MB (2 GB) or more based on system resources.</li>
-                </ul>
-            </li>
-            <li><strong>Create a Virtual Hard Disk:</strong>
-                <ul>
-                    <li>Select "Create a virtual hard disk now".</li>
-                    <li>Choose "VDI" and "Dynamically allocated".</li>
-                    <li>Set the size (20GB recommended).</li>
-                </ul>
-            </li>
-            <li><strong>Configure the VM Settings:</strong>
-                <ul>
-                    <li>Under "Storage", attach the Ubuntu ISO file.</li>
-                </ul>
-            </li>
-            <li><strong>Start the Virtual Machine & Install Ubuntu:</strong>
-                <ul>
-                    <li>Follow the installation steps (language, keyboard, user setup, etc.).</li>
-                </ul>
-            </li>
-            <li><strong>Complete Installation:</strong>
-                <ul>
-                    <li>Restart the VM and remove the installation disk.</li>
-                    <li>Log in and start using Ubuntu!</li>
-                </ul>
-            </li>
-        </ol>
-        <h2>Installing Synopsys Tools</h2>
-        <p>Contact your university or organization to get access to Synopsys tools and follow the provided installation instructions.</p>
+    <main class="container py-5">
+        <section>
+            <h2>Setting Up Linux</h2>
+            <p>Follow these steps to install Linux using VirtualBox:</p>
+            <h3>Prerequisites:</h3>
+            <ul>
+                <li>VirtualBox installed on your system.</li>
+                <li>Ubuntu ISO file (download it from Ubuntu's official website).</li>
+            </ul>
+            <h3>Steps to Install Ubuntu in VirtualBox:</h3>
+            <ol>
+                <li><strong>Download and Install VirtualBox:</strong>
+                    <ul>
+                        <li>Download VirtualBox from the official website.</li>
+                        <li>Run the installer and follow the installation instructions.</li>
+                    </ul>
+                </li>
+                <li><strong>Create a New Virtual Machine:</strong>
+                    <ul>
+                        <li>Open VirtualBox and click "New".</li>
+                        <li>Name it (e.g., "Ubuntu"), select Linux as type, and Ubuntu (64-bit) as version.</li>
+                    </ul>
+                </li>
+                <li><strong>Set Memory (RAM):</strong>
+                    <ul>
+                        <li>Assign 2048 MB (2 GB) or more based on system resources.</li>
+                    </ul>
+                </li>
+                <li><strong>Create a Virtual Hard Disk:</strong>
+                    <ul>
+                        <li>Select "Create a virtual hard disk now".</li>
+                        <li>Choose "VDI" and "Dynamically allocated".</li>
+                        <li>Set the size (20GB recommended).</li>
+                    </ul>
+                </li>
+                <li><strong>Configure the VM Settings:</strong>
+                    <ul>
+                        <li>Under "Storage", attach the Ubuntu ISO file.</li>
+                    </ul>
+                </li>
+                <li><strong>Start the Virtual Machine & Install Ubuntu:</strong>
+                    <ul>
+                        <li>Follow the installation steps (language, keyboard, user setup, etc.).</li>
+                    </ul>
+                </li>
+                <li><strong>Complete Installation:</strong>
+                    <ul>
+                        <li>Restart the VM and remove the installation disk.</li>
+                        <li>Log in and start using Ubuntu!</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+        <section>
+            <h2>Installing Synopsys Tools</h2>
+            <p>Contact your university or organization to get access to Synopsys tools and follow the provided installation instructions.</p>
+        </section>
         <section>
             <h2>Install Icarus Verilog, GTKWave, and GVim</h2>
             <h3>1. Installing Icarus Verilog</h3>
             <ol>
                 <li>Open your terminal.</li>
-                <li>Run: <code>sudo apt-get install iverilog</code></li>
-                <li>Verify installation with: <code>iverilog -v</code></li>
+                <li>Run: <pre><code>sudo apt-get install iverilog</code></pre></li>
+                <li>Verify installation with: <pre><code>iverilog -v</code></pre></li>
             </ol>
             <h3>2. Installing GTKWave</h3>
             <ol>
                 <li>Open your terminal.</li>
-                <li>Run: <code>sudo apt-get install gtkwave</code></li>
-                <li>Check installation with: <code>gtkwave</code></li>
+                <li>Run: <pre><code>sudo apt-get install gtkwave</code></pre></li>
+                <li>Check installation with: <pre><code>gtkwave</code></pre></li>
             </ol>
             <h3>3. Installing GVim</h3>
             <ol>
                 <li>Open your terminal.</li>
-                <li>Run: <code>sudo apt-get install vim-gtk</code></li>
-                <li>Launch with: <code>gvim</code></li>
+                <li>Run: <pre><code>sudo apt-get install vim-gtk</code></pre></li>
+                <li>Launch with: <pre><code>gvim</code></pre></li>
             </ol>
         </section>
-        <h3>Verilog Simulation Workflow</h3>
-        <p>Here’s a basic workflow for Verilog simulations:</p>
-        <ul>
-            <li>Write the Verilog module (e.g., <strong>module.v</strong>).</li>
-            <li>Compile the code using a simulator (e.g., ModelSim, Icarus Verilog).</li>
-            <li>Create a testbench to validate the design.</li>
-            <li>Run the simulation and analyze results using GTKWave.</li>
-        </ul>
+
+        <section>
+            <h3>Verilog Simulation Workflow</h3>
+            <p>Here’s a basic workflow for Verilog simulations:</p>
+            <ul>
+                <li>Write the Verilog module (e.g., <strong>module.v</strong>).</li>
+                <li>Compile the code using a simulator (e.g., ModelSim, Icarus Verilog).</li>
+                <li>Create a testbench to validate the design.</li>
+                <li>Run the simulation and analyze results using GTKWave.</li>
+            </ul>
+        </section>
     </main>
     <footer class="bg-dark text-white py-3">
         <div class="container text-center">
