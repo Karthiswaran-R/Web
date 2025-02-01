@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Verilog VLSI Design Hub</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav>
-            <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="linux.html">Linux</a></li>
                 <li><a href="tools.html">Tools</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="library.html">Library</a></li>
                 <li><a href="contact.html">Contact</a></li>
-            </ul>
         </nav>
     </header>
     <div class="contact-container">
@@ -41,7 +38,6 @@
     <footer>
         <p>&copy; 2025 VLSI Design Hub. All rights reserved.</p>
     </footer>
-
     <script>
         document.getElementById("contact-form").addEventListener("submit", function(event) {
             var name = document.getElementById("name").value.trim();
@@ -53,51 +49,5 @@
             }
         });
     </script>
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .center-text {
-            text-align: center;
-        }
-        nav {
-            background-color: #333;
-            padding: 10px 0;
-        }
-        .nav-links {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .nav-links li {
-            margin: 0 15px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-            font-size: 18px;
-            padding: 10px 15px;
-            transition: 0.3s;
-        }
-        .nav-links a:hover {
-            background-color: #555;
-            border-radius: 5px;
-        }
-        @media (max-width: 768px) {
-            .nav-links {
-                flex-direction: column;
-                text-align: center;
-            }
-            .nav-links li {
-                margin: 10px 0;
-            }
-        }
-    </style>
 </body>
 </html>
