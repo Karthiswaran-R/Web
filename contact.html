@@ -9,17 +9,19 @@
 <body>
     <header>
         <nav>
-            <a href="index.html">Home</a>
-            <a href="linux.html">Linux</a>
-            <a href="tools.html">Tools</a>
-            <a href="projects.html">Projects</a>
-            <a href="library.html">Library</a>
-            <a href="contact.html">Contact</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="linux.html">Linux</a></li>
+                <li><a href="tools.html">Tools</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="library.html">Library</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </nav>
     </header>
     <div class="contact-container">
-        <h align-text="centre"><strong>Contact Us - Verilog VLSI Design Hub</strong></h>
-        <h2>Contact Us</h2>
+        <h1 class="center-text"><strong>Contact Us - Verilog VLSI Design Hub</strong></h1>
+        <h2 class="center-text">Get in Touch</h2>
         <form id="contact-form" action="submit_form.php" method="POST">
             <div class="form-group">
                 <label for="name">Name:</label>
@@ -36,23 +38,66 @@
             <button type="submit" class="submit-btn">Submit</button>
         </form>
     </div>
-
     <footer>
         <p>&copy; 2025 VLSI Design Hub. All rights reserved.</p>
     </footer>
 
     <script>
-        // Simple Form Validation
         document.getElementById("contact-form").addEventListener("submit", function(event) {
             var name = document.getElementById("name").value.trim();
             var email = document.getElementById("email").value.trim();
             var message = document.getElementById("message").value.trim();
-
             if (name === "" || email === "" || message === "") {
                 alert("All fields are required!");
                 event.preventDefault();
             }
         });
     </script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .center-text {
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .nav-links li {
+            margin: 0 15px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            padding: 10px 15px;
+            transition: 0.3s;
+        }
+        .nav-links a:hover {
+            background-color: #555;
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links li {
+                margin: 10px 0;
+            }
+        }
+    </style>
 </body>
 </html>
