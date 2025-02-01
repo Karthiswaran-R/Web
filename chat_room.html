@@ -75,26 +75,30 @@
     </div>
     <script>
         const firebaseConfig = {
-    apiKey: "AIzaSyADGcvUlAroGlAFzdR_7h99V0F9Hn30ndg",
-    authDomain: "vlsidesignhub0.firebaseapp.com",
-    projectId: "vlsidesignhub0",
-    storageBucket: "vlsidesignhub0.firebasestorage.app",
-    messagingSenderId: "905823632105",
-    appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
-    measurementId: "G-XM8D01GD22"
-  };
+            apiKey: "AIzaSyADGcvUlAroGlAFzdR_7h99V0F9Hn30ndg",
+            authDomain: "vlsidesignhub0.firebaseapp.com",
+            projectId: "vlsidesignhub0",
+            storageBucket: "vlsidesignhub0.firebasestorage.app",
+            messagingSenderId: "905823632105",
+            appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
+            measurementId: "G-XM8D01GD22"
+        };
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.database();
-        
         document.getElementById("login").addEventListener("click", () => {
             const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider);
+            auth.signInWithPopup(provider).catch(error => {
+                console.error("Error during sign-in:", error.message);
+            });
         });
         document.getElementById("logout").addEventListener("click", () => {
-            auth.signOut();
+            auth.signOut().catch(error => {
+                console.error("Error during sign-out:", error.message);
+            });
         });
         auth.onAuthStateChanged(user => {
+            console.log("User state changed:", user);
             if (user) {
                 document.getElementById("login").style.display = "none";
                 document.getElementById("logout").style.display = "block";
@@ -105,17 +109,23 @@
         });
         document.getElementById("send").addEventListener("click", () => {
             const message = document.getElementById("message").value;
-            if (message) {
+            if (message.trim()) {
+                console.log("Sending message:", message);
                 db.ref("messages").push({
                     user: auth.currentUser.displayName,
                     text: message,
                     timestamp: Date.now()
+                }).catch(error => {
+                    console.error("Error writing to Firebase:", error.message);
                 });
                 document.getElementById("message").value = "";
+            } else {
+                console.log("Message is empty or just whitespace!");
             }
         });
         db.ref("messages").on("child_added", snapshot => {
             const msg = snapshot.val();
+            console.log("New message added:", msg);
             const msgElement = document.createElement("p");
             msgElement.textContent = `${msg.user}: ${msg.text}`;
             document.getElementById("chat-box").appendChild(msgElement);
