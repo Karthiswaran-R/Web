@@ -1,10 +1,9 @@
 body {
     background-color: #121212;
     background-image: 
-        linear-gradient(45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(-45deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 200 200"><rect x="0" y="0" width="200" height="200" fill="black"/><g stroke="white" stroke-width="0.5"><line x1="50" y1="50" x2="150" y2="50"/><line x1="50" y1="50" x2="50" y2="150"/><line x1="150" y1="50" x2="150" y2="150"/><line x1="50" y1="150" x2="150" y2="150"/><line x1="75" y1="50" x2="75" y2="150"/><line x1="125" y1="50" x2="125" y2="150"/></g></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
     color: white;
 }
 header {
