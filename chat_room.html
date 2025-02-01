@@ -3,143 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VLSI Chat Room</title>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+    <title>VLSI Design Hub Chatroom</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .chat-container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f1f1f1;
-            border-radius: 8px;
-        }
-        #chat-box {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-bottom: 20px;
-            background-color: #fff;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        #message {
-            width: 80%;
-            padding: 10px;
-            margin-right: 10px;
-            border-radius: 5px;
-        }
-        #send {
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-        #send:hover {
-            background-color: #0056b3;
-        }
-        #login, #logout {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        #login:hover, #logout:hover {
-            background-color: #218838;
-        }
-    </style>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <nav>
-        <ul class="nav justify-content-center bg-dark">
-            <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
-            <li class="nav-item"><a href="linux.html" class="nav-link text-white"><i class="fab fa-linux"></i> Linux</a></li>
-            <li class="nav-item"><a href="tools.html" class="nav-link text-white"><i class="fas fa-tools"></i> Tools</a></li>
-            <li class="nav-item"><a href="projects.html" class="nav-link text-white"><i class="fas fa-project-diagram"></i> Projects</a></li>
-            <li class="nav-item"><a href="library.html" class="nav-link text-white"><i class="fas fa-book"></i> Library</a></li>
-            <li class="nav-item"><a href="chat_room.html" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-    </nav>
-    <div class="chat-container">
-        <h2>VLSI Chat Room</h2>
-        <button id="login">Login with Google</button>
-        <button id="logout" style="display: none;">Logout</button>
-        <div id="chat-box"></div>
-        <input type="text" id="message" placeholder="Type a message..." />
-        <button id="send">Send</button>
+    <div id="chatroom">
+        <h1>Welcome to VLSI Design Hub Chatroom</h1>
+        <div id="g_id_onload"
+            data-client_id="YOUR_GOOGLE_CLIENT_ID"
+            data-callback="handleCredentialResponse">
+        </div>
+        <div class="g_id_signin" data-type="standard"></div>
+        <div id="user-info" style="display:none;">
+            <h2>User Info</h2>
+            <p id="name"></p>
+            <p id="email"></p>
+            <button id="logout">Logout</button>
+        </div>
     </div>
     <script>
-        const firebaseConfig = {
-            apiKey: "AIzaSyADGcvUlAroGlAFzdR_7h99V0F9Hn30ndg",
-            authDomain: "vlsidesignhub0.firebaseapp.com",
-            projectId: "vlsidesignhub0",
-            storageBucket: "vlsidesignhub0.firebasestorage.app",
-            messagingSenderId: "905823632105",
-            appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
-            measurementId: "G-XM8D01GD22"
+        function handleCredentialResponse(response) {
+            const userObject = jwt_decode(response.credential);
+            document.getElementById('name').innerText = `Name: ${userObject.name}`;
+            document.getElementById('email').innerText = `Email: ${userObject.email}`;
+            document.getElementById('user-info').style.display = 'block';
+            document.querySelector('.g_id_signin').style.display = 'none';
+        }
+        document.getElementById('logout').onclick = function() {
+            const auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                document.getElementById('user-info').style.display = 'none';
+                document.querySelector('.g_id_signin').style.display = 'block';
+            });
         };
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const db = firebase.database();
-        document.getElementById("login").addEventListener("click", () => {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider)
-                .then(result => {
-                    const user = result.user;
-                    const isNewUser = result.additionalUserInfo.isNewUser;
-
-                    if (isNewUser) {
-                        alert(`Welcome to the VLSI Chat Room, ${user.displayName}! You have successfully registered.`);
-                    } else {
-                        alert(`Welcome back, ${user.displayName}!`);
-                    }
-                })
-                .catch(error => {
-                    console.error("Error during sign-in:", error.message);
-                });
-        });
-        document.getElementById("logout").addEventListener("click", () => {
-            auth.signOut()
-                .then(() => {
-                    alert("You have successfully logged out.");
-                })
-                .catch(error => {
-                    console.error("Error during sign-out:", error.message);
-                });
-        });
-        auth.onAuthStateChanged(user => {
-            if (user) {
-                document.getElementById("login").style.display = "none";
-                document.getElementById("logout").style.display = "block";
-            } else {
-                document.getElementById("login").style.display = "block";
-                document.getElementById("logout").style.display = "none";
-            }
-        });
-        document.getElementById("send").addEventListener("click", () => {
-            const message = document.getElementById("message").value;
-            if (message.trim()) {
-                db.ref("messages").push({
-                    user: auth.currentUser.displayName,
-                    text: message,
-                    timestamp: Date.now()
-                }).catch(error => {
-                    console.error("Error writing to Firebase:", error.message);
-                });
-                document.getElementById("message").value = "";
-            }
-        });
-        db.ref("messages").on("child_added", snapshot => {
-            const msg = snapshot.val();
-            const msgElement = document.createElement("p");
-            msgElement.textContent = `${msg.user}: ${msg.text}`;
-            document.getElementById("chat-box").appendChild(msgElement);
-        });
     </script>
 </body>
 </html>
