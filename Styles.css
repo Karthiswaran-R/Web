@@ -3,24 +3,49 @@ body {
     color: white;
     font-family: Arial, sans-serif;
     padding-top: 50px; 
+    margin: 0;
+    overflow-x: hidden;
 }
 header {
     background: #333;
     color: white;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
-}
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 header nav a {
     color: white;
     margin: 0 15px;
     text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
+}
+header nav a:hover {
+    color: #00bcd4;
 }
 main {
-    padding: 20px;
+    padding: 40px;
+    line-height: 1.6;
 }
 footer {
     text-align: center;
     background: #333;
     color: white;
-    padding: 10px 0;
+    padding: 15px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+h1, h2, h3 {
+    font-family: 'Roboto', sans-serif;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+ul li {
+    margin: 10px 0;
+}
+a {
+    text-decoration: none;
 }
