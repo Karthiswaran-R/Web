@@ -41,32 +41,52 @@
         <p>&copy; 2025 VLSI Design Hub. All rights reserved.</p>
     </footer>
     <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+    const firebaseConfig = {
+        apiKey: "AIzaSyADGcvUlAroGlAFzdR_7h99V0F9Hn30ndg",
+        authDomain: "vlsidesignhub0.firebaseapp.com",
+        databaseURL: "https://vlsidesignhub0-default-rtdb.firebaseio.com",
+        projectId: "vlsidesignhub0",
+        storageBucket: "vlsidesignhub0.appspot.com",
+        messagingSenderId: "905823632105",
+        appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
+        measurementId: "G-XM8D01GD22"
+    };
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    console.log("Initializing Firebase...");
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
     const chatRef = ref(database, "chatroom");
-    function sendMessage() {
+    console.log("Firebase initialized successfully!");
+        function sendMessage() {
         const messageInput = document.getElementById("message");
         const message = messageInput.value.trim();
         if (message !== "") {
+            console.log("Sending message:", message);
             push(chatRef, { text: message, timestamp: Date.now() })
                 .then(() => {
-                    messageInput.value = "";
+                    messageInput.value = ""; 
+                    console.log("Message sent!");
                 })
                 .catch(error => console.error("Error sending message:", error));
         }
     }
-    onChildAdded(chatRef, snapshot => {
-        const msg = snapshot.val().text;
-        const chatroom = document.getElementById("chatroom");
-        const msgElement = document.createElement("div");
-        msgElement.className = "p-2 border rounded bg-white mb-1";
-        msgElement.textContent = msg;
-        chatroom.appendChild(msgElement);
-        chatroom.scrollTop = chatroom.scrollHeight;
+    onChildAdded(chatRef, (snapshot) => {
+        const msgData = snapshot.val();
+        if (msgData && msgData.text) {
+            console.log("New message received:", msgData.text);
+            const chatroom = document.getElementById("chatroom");
+            const msgElement = document.createElement("div");
+
+            msgElement.className = "p-2 border rounded bg-white mb-1";
+            msgElement.textContent = msgData.text;
+
+            chatroom.appendChild(msgElement);
+            chatroom.scrollTop = chatroom.scrollHeight; 
+        }
     });
     window.sendMessage = sendMessage;
 </script>
+
 </body>
 </html>
