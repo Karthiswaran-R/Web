@@ -17,13 +17,16 @@
 </head>
 <body>
     <nav>
-        <ul class="nav justify-content-center bg-dark" id="nav-menu">
-            <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
-            <li class="nav-item"><a href="chatroom.html" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-    </nav>
-
+            <ul class="nav justify-content-center bg-dark" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a href="linux.html" class="nav-link text-white"><i class="fab fa-linux"></i> Linux</a></li>
+                <li class="nav-item"><a href="tools.html" class="nav-link text-white"><i class="fas fa-tools"></i> Tools</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link text-white"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li class="nav-item"><a href="library.html" class="nav-link text-white"><i class="fas fa-book"></i> Library</a></li>
+                <li class="nav-item"><a href="#chatroom" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
     <header class="bg-dark text-white py-3 text-center">
         <h1><i class="fas fa-comments"></i> VLSI Chat Room</h1>
         <button class="btn btn-success" id="googleLoginBtn"><i class="fab fa-google"></i> Sign in with Google</button>
@@ -52,7 +55,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
         // ✅ Firebase Configuration
         const firebaseConfig = {
@@ -80,7 +83,7 @@
             signInWithRedirect(auth, provider);
         });
 
-        // ✅ Handle Redirected Login (Fixes Popup Block Issue)
+        // ✅ Handle Redirected Login
         getRedirectResult(auth)
             .then((result) => {
                 if (result.user) {
