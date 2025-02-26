@@ -11,7 +11,6 @@
     <header class="bg-dark text-white py-3 text-center">
         <h1><i class="fas fa-comments"></i> VLSI Chat Room</h1>
     </header>
-
     <main class="container py-4">
         <article>
             <h2>Live Chat</h2>
@@ -25,62 +24,36 @@
             </div>
         </article>
     </main>
-
     <footer class="bg-dark text-light py-3 text-center">
         <p>&copy; 2025 VLSI Design Hub. All rights reserved.</p>
     </footer>
-
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
-
-    <script>
-       const firebaseConfig = {
-
-  apiKey: "AIzaSyADGcvUlAroGlAFzdR_7h99V0F9Hn30ndg",
-
-  authDomain: "vlsidesignhub0.firebaseapp.com",
-
-  projectId: "vlsidesignhub0",
-
-  storageBucket: "vlsidesignhub0.firebasestorage.app",
-
-  messagingSenderId: "905823632105",
-
-  appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
-
-  measurementId: "G-XM8D01GD22"
-
-};
-
-        firebase.initializeApp(firebaseConfig);
-        const db = firebase.database().ref("chatroom");
-
-        // Function to send messages
-        function sendMessage() {
-            const message = document.getElementById("message").value.trim();
-            if (message !== "") {
-                db.push({
-                    text: message,
-                    timestamp: Date.now()
-                }).then(() => {
-                    document.getElementById("message").value = "";
-                }).catch(error => console.error("Error sending message:", error));
-            }
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js";
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const chatRef = ref(database, "chatroom");
+    function sendMessage() {
+        const messageInput = document.getElementById("message");
+        const message = messageInput.value.trim();
+        if (message !== "") {
+            push(chatRef, { text: message, timestamp: Date.now() })
+                .then(() => {
+                    messageInput.value = "";
+                })
+                .catch(error => console.error("Error sending message:", error));
         }
-
-        // Function to display messages in real-time
-        db.on("child_added", snapshot => {
-            const msg = snapshot.val().text;
-            const chatroom = document.getElementById("chatroom");
-            const msgElement = document.createElement("div");
-
-            msgElement.className = "p-2 border rounded bg-white mb-1";
-            msgElement.textContent = msg;
-
-            chatroom.appendChild(msgElement);
-            chatroom.scrollTop = chatroom.scrollHeight; // Auto-scroll to latest message
-        });
-    </script>
+    }
+    onChildAdded(chatRef, snapshot => {
+        const msg = snapshot.val().text;
+        const chatroom = document.getElementById("chatroom");
+        const msgElement = document.createElement("div");
+        msgElement.className = "p-2 border rounded bg-white mb-1";
+        msgElement.textContent = msg;
+        chatroom.appendChild(msgElement);
+        chatroom.scrollTop = chatroom.scrollHeight;
+    });
+    window.sendMessage = sendMessage;
+</script>
 </body>
 </html>
