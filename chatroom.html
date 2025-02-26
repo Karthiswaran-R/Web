@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive guide on tools for VLSI Design, including Linux setup, Verilog tools, and Synopsys installation.">
+    <title>Tools for VLSI Design</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Styles.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database.js"></script>
+</head>
+<body>
+    <header class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <h1><i class="fas fa-tools"></i> Tools for VLSI Design</h1>
+        </div>
+        <nav>
+            <ul class="nav justify-content-center bg-dark" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a href="linux.html" class="nav-link text-white"><i class="fab fa-linux"></i> Linux</a></li>
+                <li class="nav-item"><a href="tools.html" class="nav-link text-white"><i class="fas fa-tools"></i> Tools</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link text-white"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li class="nav-item"><a href="library.html" class="nav-link text-white"><i class="fas fa-book"></i> Library</a></li>
+                <li class="nav-item"><a href="chatroom.html" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container py-5">
+        <article>
+            <h2>Chat Room</h2>
+            <div id="chatroom" class="border p-3" style="height: 300px; overflow-y: scroll;"></div>
+            <div class="input-group mt-3">
+                <input type="text" id="message" class="form-control" placeholder="Type your message...">
+                <button class="btn btn-primary" onclick="sendMessage()"><i class="fas fa-paper-plane"></i> Send</button>
+            </div>
+        </article>
+    </main>
+    <footer class="bg-dark text-light py-3">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 VLSI Design Hub. All rights reserved.</p>
+            <p><i class="fas fa-cogs"></i> Designed for VLSI Enthusiasts</p>
+        </div>
+    </footer>
+    <script>
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            databaseURL: "YOUR_DATABASE_URL",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database().ref("chat");
+        
+        function sendMessage() {
+            const message = document.getElementById("message").value;
+            if (message.trim() !== "") {
+                db.push().set({ text: message });
+                document.getElementById("message").value = "";
+            }
+        }
+
+        db.on("child_added", snapshot => {
+            const msg = snapshot.val().text;
+            const chatroom = document.getElementById("chatroom");
+            const msgElement = document.createElement("div");
+            msgElement.textContent = msg;
+            chatroom.appendChild(msgElement);
+            chatroom.scrollTop = chatroom.scrollHeight;
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
