@@ -17,16 +17,13 @@
 </head>
 <body>
     <nav>
-            <ul class="nav justify-content-center bg-dark" id="nav-menu">
-                <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
-                <li class="nav-item"><a href="linux.html" class="nav-link text-white"><i class="fab fa-linux"></i> Linux</a></li>
-                <li class="nav-item"><a href="tools.html" class="nav-link text-white"><i class="fas fa-tools"></i> Tools</a></li>
-                <li class="nav-item"><a href="projects.html" class="nav-link text-white"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                <li class="nav-item"><a href="library.html" class="nav-link text-white"><i class="fas fa-book"></i> Library</a></li>
-                <li class="nav-item"><a href="#chatroom" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-        </nav>
+        <ul class="nav justify-content-center bg-dark" id="nav-menu">
+            <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
+            <li class="nav-item"><a href="chatroom.html" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+    </nav>
+
     <header class="bg-dark text-white py-3 text-center">
         <h1><i class="fas fa-comments"></i> VLSI Chat Room</h1>
         <button class="btn btn-success" id="googleLoginBtn"><i class="fab fa-google"></i> Sign in with Google</button>
@@ -54,9 +51,10 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, push, onChildAdded, set, remove, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, setPersistence, browserLocalPersistence } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getDatabase, ref, push, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged, signInWithRedirect, getRedirectResult } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+        // ✅ Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyD5BrJN0wKDF3wBTq2HRIt2uVo3CIpRGws",
             authDomain: "vlsidesignhub0.firebaseapp.com",
@@ -70,45 +68,44 @@
 
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
-        const chatRef = ref(database, "chatroom");
-        const onlineUsersRef = ref(database, "onlineUsers");
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
 
-        setPersistence(auth, browserLocalPersistence);
+        const onlineUsersRef = ref(database, "onlineUsers");
 
         let currentUser = null;
 
+        // ✅ Google Sign-In (Redirect instead of Popup)
         document.getElementById("googleLoginBtn").addEventListener("click", () => {
-            signInWithRedirect(auth, provider).then((result) => {
-                currentUser = result.user;
+            signInWithRedirect(auth, provider);
+        });
+
+        // ✅ Handle Redirected Login (Fixes Popup Block Issue)
+        getRedirectResult(auth)
+            .then((result) => {
+                if (result.user) {
+                    currentUser = result.user;
+                    updateUI();
+                    set(ref(database, `onlineUsers/${currentUser.uid}`), {
+                        name: currentUser.displayName,
+                        avatar: currentUser.photoURL
+                    });
+                }
+            })
+            .catch(error => console.error("❌ Redirect Sign-In Error:", error));
+
+        // ✅ Sign Out & Remove User from Online List
+        document.getElementById("signOutBtn").addEventListener("click", () => {
+            if (currentUser) {
+                remove(ref(database, `onlineUsers/${currentUser.uid}`));
+            }
+            signOut(auth).then(() => {
+                currentUser = null;
                 updateUI();
-                set(ref(database, `onlineUsers/${currentUser.uid}`), {
-                    name: currentUser.displayName,
-                    avatar: currentUser.photoURL
-                });
-            }).catch(error => console.error("❌ Google Sign-In Error:", error));
+            }).catch(error => console.error("❌ Sign Out Error:", error));
         });
 
-        document.getElementById("googleLoginBtn").addEventListener("click", () => {
-    const loginButton = document.getElementById("googleLoginBtn");
-    loginButton.disabled = true; // Disable button to prevent multiple clicks
-
-    signInWithRedirect(auth, provider)
-        .then((result) => {
-            currentUser = result.user;
-            updateUI();
-            set(ref(database, `onlineUsers/${currentUser.uid}`), {
-                name: currentUser.displayName,
-                avatar: currentUser.photoURL
-            });
-        })
-        .catch(error => console.error("❌ Google Sign-In Error:", error))
-        .finally(() => {
-            loginButton.disabled = false; // Re-enable button after login attempt
-        });
-});
-
+        // ✅ Update UI Based on Auth Status
         function updateUI() {
             if (currentUser) {
                 document.getElementById("googleLoginBtn").style.display = "none";
@@ -123,11 +120,7 @@
             }
         }
 
-        onAuthStateChanged(auth, (user) => {
-            currentUser = user;
-            updateUI();
-        });
-
+        // ✅ Track Online Users in Real-Time
         onValue(onlineUsersRef, (snapshot) => {
             const onlineUsersList = document.getElementById("onlineUsers");
             onlineUsersList.innerHTML = "";
@@ -140,9 +133,17 @@
             });
         });
 
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-        }
+        // ✅ Detect Auth State & Update UI
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                updateUI();
+            } else {
+                currentUser = null;
+                updateUI();
+            }
+        });
+
     </script>
 </body>
 </html>
