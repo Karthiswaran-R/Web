@@ -29,6 +29,7 @@
             </div>
         </article>
     </main>
+
     <footer class="bg-dark text-light py-3 text-center">
         <p>&copy; 2025 VLSI Design Hub. All rights reserved.</p>
     </footer>
@@ -49,18 +50,28 @@
         const database = getDatabase(app);
         const chatRef = ref(database, "chatroom");
         console.log("✅ Firebase Initialized!");
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            let hours = date.getHours();
+            const minutes = date.getMinutes().toString().padStart(2, "0");
+            const ampm = hours >= 12 ? "PM" : "AM";
+            hours = hours % 12 || 12; // Convert 24-hour time to 12-hour format
+            return `[${hours}:${minutes} ${ampm}]`;
+        }
         function sendMessage() {
             const username = document.getElementById("username").value.trim();
             const messageInput = document.getElementById("message");
             const message = messageInput.value.trim();
+
             if (username === "") {
                 alert("Please enter your name before sending messages!");
                 return;
             }
             if (message !== "") {
-                push(chatRef, { user: username, text: message, timestamp: Date.now() })
+                const timestamp = Date.now();
+                push(chatRef, { user: username, text: message, timestamp })
                     .then(() => {
-                        messageInput.value = ""; 
+                        messageInput.value = ""; // Clear input after sending
                         console.log("✅ Message Sent!");
                     })
                     .catch(error => console.error("❌ Error Sending Message:", error));
@@ -72,14 +83,15 @@
                 console.log("📩 New Message:", msgData.text);
                 const chatroom = document.getElementById("chatroom");
                 const msgElement = document.createElement("div");
+
                 msgElement.className = "p-2 border rounded bg-white mb-1";
-                msgElement.innerHTML = `<strong>${msgData.user}:</strong> ${msgData.text}`;
+                msgElement.innerHTML = `${formatTime(msgData.timestamp)} <strong>${msgData.user}:</strong> ${msgData.text}`;
+
                 chatroom.appendChild(msgElement);
-                chatroom.scrollTop = chatroom.scrollHeight; 
+                chatroom.scrollTop = chatroom.scrollHeight; // Auto-scroll
             }
         });
         document.getElementById("sendBtn").addEventListener("click", sendMessage);
-
     </script>
 </body>
 </html>
