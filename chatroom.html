@@ -80,7 +80,7 @@
         let currentUser = null;
 
         document.getElementById("googleLoginBtn").addEventListener("click", () => {
-            signInWithPopup(auth, provider).then((result) => {
+            signInWithRedirect(auth, provider).then((result) => {
                 currentUser = result.user;
                 updateUI();
                 set(ref(database, `onlineUsers/${currentUser.uid}`), {
@@ -94,7 +94,7 @@
     const loginButton = document.getElementById("googleLoginBtn");
     loginButton.disabled = true; // Disable button to prevent multiple clicks
 
-    signInWithPopup(auth, provider)
+    signInWithRedirect(auth, provider)
         .then((result) => {
             currentUser = result.user;
             updateUI();
