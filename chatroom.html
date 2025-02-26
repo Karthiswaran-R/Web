@@ -7,78 +7,23 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 </head>
-    <script type="module">
-    const firebaseConfig = {
-        apiKey: "AIzaSyADGcvUlAroGlAFzdR_7h99V0F9Hn30ndg",
-        authDomain: "vlsidesignhub0.firebaseapp.com",
-        databaseURL: "https://vlsidesignhub0-default-rtdb.firebaseio.com",
-        projectId: "vlsidesignhub0",
-        storageBucket: "vlsidesignhub0.appspot.com",
-        messagingSenderId: "905823632105",
-        appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
-        measurementId: "G-XM8D01GD22"
-    };
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-    console.log("Initializing Firebase...");
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase(app);
-    const chatRef = ref(database, "chatroom");
-    console.log("Firebase initialized successfully!");
-        function sendMessage() {
-        const messageInput = document.getElementById("message");
-        const message = messageInput.value.trim();
-        if (message !== "") {
-            console.log("Sending message:", message);
-            push(chatRef, { text: message, timestamp: Date.now() })
-                .then(() => {
-                    messageInput.value = ""; 
-                    console.log("Message sent!");
-                })
-                .catch(error => console.error("Error sending message:", error));
-        }
-    }
-    onChildAdded(chatRef, (snapshot) => {
-        const msgData = snapshot.val();
-        if (msgData && msgData.text) {
-            console.log("New message received:", msgData.text);
-            const chatroom = document.getElementById("chatroom");
-            const msgElement = document.createElement("div");
-
-            msgElement.className = "p-2 border rounded bg-white mb-1";
-            msgElement.textContent = msgData.text;
-
-            chatroom.appendChild(msgElement);
-            chatroom.scrollTop = chatroom.scrollHeight; 
-        }
-    });
-    window.sendMessage = sendMessage;
-</script>
 <body>
     <header class="bg-dark text-white py-3">
         <div class="container text-center">
-            <h1><i class="fas fa-envelope"></i>Contact Us</h1>
+            <h1><i class="fas fa-comments"></i> VLSI Chat Room</h1>
         </div>
-        <nav>
-            <ul class="nav justify-content-center">
-                <li class="nav-item"><a href="index.html" class="nav-link text-white" aria-label="Home"><i class="fas fa-home"></i> Home</a></li>
-                <li class="nav-item"><a href="linux.html" class="nav-link text-white" aria-label="Linux"><i class="fab fa-linux"></i> Linux</a></li>
-                <li class="nav-item"><a href="tools.html" class="nav-link text-white" aria-label="Tools"><i class="fas fa-tools"></i> Tools</a></li>
-                <li class="nav-item"><a href="projects.html" class="nav-link text-white" aria-label="Projects"><i class="fas fa-project-diagram"></i> Projects</a></li>
-                <li class="nav-item"><a href="library.html" class="nav-link text-white" aria-label="Library"><i class="fas fa-book"></i> Library</a></li>
-                <li class="nav-item"><a href="chatroom.html" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link text-white" aria-label="Contact"><i class="fas fa-envelope"></i> Contact</a></li>
-            </ul>
-        </nav>
     </header>
+
     <main class="container py-4">
         <article>
+            <h2>Enter Your Name</h2>
+            <input type="text" id="username" class="form-control mb-3" placeholder="Your Name..." required>
             <h2>Live Chat</h2>
             <div id="chatroom" class="border p-3 mb-3" style="height: 300px; overflow-y: scroll; background-color: #f8f9fa;"></div>
 
             <div class="input-group">
-                <input type="text" id="message" class="form-control" placeholder="Type your message...">
-                <button class="btn btn-primary" onclick="sendMessage()">
+                <input type="text" id="message" class="form-control" placeholder="Type your message..." required>
+                <button class="btn btn-primary" id="sendBtn">
                     <i class="fas fa-paper-plane"></i> Send
                 </button>
             </div>
@@ -87,5 +32,54 @@
     <footer class="bg-dark text-light py-3 text-center">
         <p>&copy; 2025 VLSI Design Hub. All rights reserved.</p>
     </footer>
+    <script type="module">
+        const firebaseConfig = {
+            apiKey: "AIzaSyADGcvUlAroGlAFzdR_7h99V0F9Hn30ndg",
+            authDomain: "vlsidesignhub0.firebaseapp.com",
+            databaseURL: "https://vlsidesignhub0-default-rtdb.firebaseio.com",
+            projectId: "vlsidesignhub0",
+            storageBucket: "vlsidesignhub0.appspot.com",
+            messagingSenderId: "905823632105",
+            appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
+            measurementId: "G-XM8D01GD22"
+        };
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+        const chatRef = ref(database, "chatroom");
+        console.log("✅ Firebase Initialized!");
+        function sendMessage() {
+            const username = document.getElementById("username").value.trim();
+            const messageInput = document.getElementById("message");
+            const message = messageInput.value.trim();
+            if (username === "") {
+                alert("Please enter your name before sending messages!");
+                return;
+            }
+            if (message !== "") {
+                push(chatRef, { user: username, text: message, timestamp: Date.now() })
+                    .then(() => {
+                        messageInput.value = ""; 
+                        console.log("✅ Message Sent!");
+                    })
+                    .catch(error => console.error("❌ Error Sending Message:", error));
+            }
+        }
+        onChildAdded(chatRef, (snapshot) => {
+            const msgData = snapshot.val();
+            if (msgData && msgData.text && msgData.user) {
+                console.log("📩 New Message:", msgData.text);
+                const chatroom = document.getElementById("chatroom");
+                const msgElement = document.createElement("div");
+                msgElement.className = "p-2 border rounded bg-white mb-1";
+                msgElement.innerHTML = `<strong>${msgData.user}:</strong> ${msgData.text}`;
+                chatroom.appendChild(msgElement);
+                chatroom.scrollTop = chatroom.scrollHeight; 
+            }
+        });
+        document.getElementById("sendBtn").addEventListener("click", sendMessage);
+
+    </script>
 </body>
 </html>
