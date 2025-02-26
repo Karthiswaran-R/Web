@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive guide on tools for VLSI Design, including Linux setup, Verilog tools, and Synopsys installation.">
     <title>Tools for VLSI Design</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -11,22 +12,22 @@
 <body>
     <header class="bg-dark text-white py-4">
         <div class="container text-center">
-            <h1><i class="fas fa-tools"></i>Tools for VLSI Design</h1>
+            <h1><i class="fas fa-tools"></i> Tools for VLSI Design</h1>
         </div>
         <nav>
-        <ul class="nav justify-content-center bg-dark">
-            <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
-            <li class="nav-item"><a href="linux.html" class="nav-link text-white"><i class="fab fa-linux"></i> Linux</a></li>
-            <li class="nav-item"><a href="tools.html" class="nav-link text-white"><i class="fas fa-tools"></i> Tools</a></li>
-            <li class="nav-item"><a href="projects.html" class="nav-link text-white"><i class="fas fa-project-diagram"></i> Projects</a></li>
-            <li class="nav-item"><a href="library.html" class="nav-link text-white"><i class="fas fa-book"></i> Library</a></li>
-            <li class="nav-item"><a href="chat_room.html" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
-        </ul>
-    </nav>
+            <ul class="nav justify-content-center bg-dark" id="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link text-white"><i class="fas fa-home"></i> Home</a></li>
+                <li class="nav-item"><a href="linux.html" class="nav-link text-white"><i class="fab fa-linux"></i> Linux</a></li>
+                <li class="nav-item"><a href="tools.html" class="nav-link text-white"><i class="fas fa-tools"></i> Tools</a></li>
+                <li class="nav-item"><a href="projects.html" class="nav-link text-white"><i class="fas fa-project-diagram"></i> Projects</a></li>
+                <li class="nav-item"><a href="library.html" class="nav-link text-white"><i class="fas fa-book"></i> Library</a></li>
+                <li class="nav-item"><a href="chat_room.html" class="nav-link text-white"><i class="fas fa-comments"></i> Chat Room</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link text-white"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
     </header>
     <main class="container py-5">
-        <section>
+        <article>
             <h2>Setting Up Linux</h2>
             <p>Follow these steps to install Linux using VirtualBox:</p>
             <h3>Prerequisites:</h3>
@@ -48,62 +49,30 @@
                         <li>Name it (e.g., "Ubuntu"), select Linux as type, and Ubuntu (64-bit) as version.</li>
                     </ul>
                 </li>
-                <li><strong>Set Memory (RAM):</strong>
-                    <ul>
-                        <li>Assign 2048 MB (2 GB) or more based on system resources.</li>
-                    </ul>
-                </li>
-                <li><strong>Create a Virtual Hard Disk:</strong>
-                    <ul>
-                        <li>Select "Create a virtual hard disk now".</li>
-                        <li>Choose "VDI" and "Dynamically allocated".</li>
-                        <li>Set the size (20GB recommended).</li>
-                    </ul>
-                </li>
-                <li><strong>Configure the VM Settings:</strong>
-                    <ul>
-                        <li>Under "Storage", attach the Ubuntu ISO file.</li>
-                    </ul>
-                </li>
-                <li><strong>Start the Virtual Machine & Install Ubuntu:</strong>
-                    <ul>
-                        <li>Follow the installation steps (language, keyboard, user setup, etc.).</li>
-                    </ul>
-                </li>
-                <li><strong>Complete Installation:</strong>
-                    <ul>
-                        <li>Restart the VM and remove the installation disk.</li>
-                        <li>Log in and start using Ubuntu!</li>
-                    </ul>
-                </li>
             </ol>
-        </section>
-        <section>
+        </article>
+        <article>
             <h2>Installing Synopsys Tools</h2>
             <p>Contact your university or organization to get access to Synopsys tools and follow the provided installation instructions.</p>
-        </section>
-        <section>
-            <h2>Install Icarus Verilog, GTKWave, and GVim</h2>
+        </article>
+        <article>
+            <h2>Installing Verilog Tools</h2>
             <h3>1. Installing Icarus Verilog</h3>
-            <ol>
-                <li>Open your terminal.</li>
-                <li>Run: <pre><code>sudo apt-get install iverilog</code></pre></li>
-                <li>Verify installation with: <pre><code>iverilog -v</code></pre></li>
-            </ol>
+            <pre><code>sudo apt-get install iverilog</code></pre>
             <h3>2. Installing GTKWave</h3>
-            <ol>
-                <li>Open your terminal.</li>
-                <li>Run: <pre><code>sudo apt-get install gtkwave</code></pre></li>
-                <li>Check installation with: <pre><code>gtkwave</code></pre></li>
-            </ol>
+            <pre><code>sudo apt-get install gtkwave</code></pre>
             <h3>3. Installing GVim</h3>
-            <ol>
-                <li>Open your terminal.</li>
-                <li>Run: <pre><code>sudo apt-get install vim-gtk</code></pre></li>
-                <li>Launch with: <pre><code>gvim</code></pre></li>
-            </ol>
-        </section>
-        <section>
+            <pre><code>sudo apt-get install vim-gtk</code></pre>
+        </article>
+        <article>
+            <h2>Installing Xilinx Vivado</h2>
+            <p>Download Vivado from the Xilinx website and follow the installation steps.</p>
+        </article>
+        <article>
+            <h2>Installing Intel Quartus</h2>
+            <p>Download Intel Quartus Prime from the official Intel website and install it following the guidelines.</p>
+        </article>
+        <article>
             <h3>Verilog Simulation Workflow</h3>
             <p>Here’s a basic workflow for Verilog simulations:</p>
             <ul>
@@ -112,14 +81,29 @@
                 <li>Create a testbench to validate the design.</li>
                 <li>Run the simulation and analyze results using GTKWave.</li>
             </ul>
-        </section>
+        </article>
+        <article>
+            <h2>Contact & Q&A</h2>
+            <p>If you have any questions, feel free to ask in our <a href="chat_room.html">Chat Room</a> or email us via the <a href="contact.html">Contact Page</a>.</p>
+        </article>
     </main>
     <footer class="bg-dark text-light py-3">
-    <div class="container text-center">
-        <p class="mb-0">&copy; 2025 VLSI Design Hub. All rights reserved.</p>
-        <p><i class="fas fa-cogs"></i> Designed for VLSI Enthusiasts</p>
-    </div>
-</footer>
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 VLSI Design Hub. All rights reserved.</p>
+            <p><i class="fas fa-cogs"></i> Designed for VLSI Enthusiasts</p>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let links = document.querySelectorAll("#nav-menu .nav-link");
+            let currentUrl = window.location.pathname;
+            links.forEach(link => {
+                if (link.getAttribute("href") === currentUrl) {
+                    link.classList.add("active", "fw-bold");
+                }
+            });
+        });
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
