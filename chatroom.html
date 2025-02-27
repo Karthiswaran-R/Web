@@ -63,19 +63,16 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, push, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
         import { getAuth, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-        // ✅ Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyD5BrJN0wKDF3wBTq2HRIt2uVo3CIpRGws",
-            authDomain: "vlsidesignhub0.firebaseapp.com",
-            databaseURL: "https://vlsidesignhub0-default-rtdb.firebaseio.com",
-            projectId: "vlsidesignhub0",
-            storageBucket: "vlsidesignhub0.appspot.com",
-            messagingSenderId: "905823632105",
-            appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
-            measurementId: "G-XM8D01GD22"
-        };
-
+            authDomain: "vlsidesignhub-a8b1a.firebaseapp.com",
+            databaseURL: "https://vlsidesignhub-a8b1a-default-rtdb.firebaseio.com",
+            projectId: "vlsidesignhub-a8b1a",
+            storageBucket: "vlsidesignhub-a8b1a.firebasestorage.app",
+            messagingSenderId: "171777137184",
+            appId: "1:171777137184:web:f20047ae13b783d5fdfa45",
+            measurementId: "G-SD3V3XBTPL"
+};
         const app = initializeApp(firebaseConfig);
         const database = getDatabase(app);
         const auth = getAuth(app);
