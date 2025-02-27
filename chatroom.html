@@ -72,6 +72,17 @@
         // ✅ Google Sign-In (Popup)
         document.getElementById("googleLoginBtn").addEventListener("click", () => {
             signInWithPopup(auth, provider)
+    .then((result) => {
+        console.log("✅ User signed in:", result.user);
+        currentUser = result.user;
+        updateUI();
+        set(ref(database, `onlineUsers/${currentUser.uid}`), {
+            name: currentUser.displayName,
+            avatar: currentUser.photoURL
+        });
+    })
+    .catch(error => console.error("❌ Sign-in Error:", error));
+
                 .then((result) => {
                     console.log("✅ User signed in:", result.user);
                     currentUser = result.user;
