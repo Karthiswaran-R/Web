@@ -3,83 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Verilog HDL Course</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Self Learning Platform - Verilog HDL</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            max-width: 900px;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .list-group-item {
+        .subheading {
             cursor: pointer;
-        }
-        .list-group-item:hover {
-            background-color: #e9ecef;
-        }
-        #content-area {
-            min-height: 150px;
-            background: #ffffff;
-            border-radius: 5px;
-            padding: 15px;
+            color: blue;
+            text-decoration: underline;
         }
     </style>
-    <script>
-        function showContent(content) {
-            const contentData = {
-                "Fundamentals of Verilog HDL": "This section introduces the fundamentals of Verilog HDL, including its history, purpose, and syntax.",
-                "Introduction to Verilog": "Verilog is a hardware description language (HDL) used to model electronic systems.",
-                "Simulation & Synthesis": "Simulation allows testing of Verilog code before hardware implementation, while synthesis converts HDL code into gate-level hardware design.",
-                "Basic Digital Design Projects": "This section covers hands-on digital design projects such as simple adders, multiplexers, and counters.",
-                "Combinational Circuits": "Understanding and designing combinational circuits such as adders, multiplexers, and encoders.",
-                "Sequential Circuits": "Designing sequential circuits like flip-flops, registers, and counters.",
-                "FSM Design & Implementation": "Implementing finite state machines for complex digital logic applications.",
-                "Memory Design": "Designing and implementing RAM and ROM structures in Verilog.",
-                "Intermediate Design Projects": "Hands-on projects covering combinational and sequential design elements.",
-                "FPGA Development & Implementation": "Understanding FPGA architecture and implementing Verilog designs on FPGA boards.",
-                "High-Level Verilog Coding Techniques": "Optimizing Verilog code using advanced coding techniques.",
-                "Hardware Verification & Testbenches": "Building testbenches to verify digital circuits.",
-                "Advanced FPGA Projects": "Challenging projects covering high-speed and complex FPGA applications.",
-                "ASIC Design Flow": "Overview of the ASIC design process from RTL to fabrication.",
-                "FPGA vs. ASIC Implementation": "Comparing FPGA and ASIC implementations in terms of cost, performance, and flexibility.",
-                "Advanced Verification Techniques": "Using SystemVerilog and UVM for complex verification tasks.",
-                "Industry-Oriented Projects": "Real-world projects aligned with industry standards.",
-                "Large-Scale Verilog Design Projects": "Final-year and capstone projects involving large-scale system designs.",
-                "Industry Standards & Best Practices": "Guidelines and practices followed in professional Verilog development.",
-                "Tools & Certifications": "Exploring industry-standard tools and certifications for Verilog and FPGA design."
-            };
-            document.getElementById('content-area').innerHTML = `<h2>${content}</h2><p>${contentData[content] || 'Content not available.'}</p>`;
-        }
-    </script>
 </head>
 <body>
-    <div class="container mt-4">
-        <h1 class="mb-4 text-center">Verilog HDL Course</h1>
-        <div class="list-group">
-            <a class="list-group-item list-group-item-action" onclick="showContent('Fundamentals of Verilog HDL')">1. Fundamentals of Verilog HDL</a>
-            <div class="ms-3">
-                <a class="list-group-item list-group-item-action text-primary" onclick="showContent('Introduction to Verilog')">1.1 Introduction to Verilog</a>
-                <a class="list-group-item list-group-item-action text-primary" onclick="showContent('Simulation & Synthesis')">1.2 Simulation & Synthesis</a>
-                <a class="list-group-item list-group-item-action text-primary" onclick="showContent('Basic Digital Design Projects')">1.3 Basic Digital Design Projects</a>
+    <div class="container">
+        <h1>Fundamentals of Verilog HDL</h1>
+        <div class="accordion" id="topicsAccordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Introduction to Verilog HDL
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#topicsAccordion">
+                    <div class="card-body">
+                        <div class="subheading" onclick="redirectToContent('what-is-hdl')">What is HDL?</div>
+                        <div class="subheading" onclick="redirectToContent('history-evolution')">History and Evolution of Verilog</div>
+                        <div class="subheading" onclick="redirectToContent('verilog-vs-vhdl')">Verilog vs. VHDL: Key Differences</div>
+                        <div class="subheading" onclick="redirectToContent('applications-verilog')">Applications of Verilog in FPGA and ASIC Design</div>
+                    </div>
+                </div>
             </div>
-            <a class="list-group-item list-group-item-action" onclick="showContent('Intermediate Verilog Design')">2. Intermediate Verilog Design</a>
-            <div class="ms-3">
-                <a class="list-group-item list-group-item-action text-primary" onclick="showContent('Combinational Circuits')">2.1 Combinational Circuits</a>
-                <a class="list-group-item list-group-item-action text-primary" onclick="showContent('Sequential Circuits')">2.2 Sequential Circuits</a>
-                <a class="list-group-item list-group-item-action text-primary" onclick="showContent('FSM Design & Implementation')">2.3 FSM Design & Implementation</a>
-                <a class="list-group-item list-group-item-action text-primary" onclick="showContent('Memory Design')">2.4 Memory Design</a>
-                <a class="list-group-item list-group-item-action text-primary" onclick="showContent('Intermediate Design Projects')">2.5 Intermediate Design Projects</a>
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Verilog Basics: Syntax and Structure
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#topicsAccordion">
+                    <div class="card-body">
+                        <div class="subheading" onclick="redirectToContent('data-types-operators')">Data Types and Operators</div>
+                        <div class="subheading" onclick="redirectToContent('modules-ports-nets')">Modules, Ports, and Nets</div>
+                        <div class="subheading" onclick="redirectToContent('procedural-continuous')">Procedural vs. Continuous Assignments</div>
+                        <div class="subheading" onclick="redirectToContent('always-blocks')">Always Blocks and Sensitivity Lists</div>
+                        <div class="subheading" onclick="redirectToContent('blocking-nonblocking')">Blocking vs. Non-blocking Assignments</div>
+                    </div>
+                </div>
             </div>
-            <a class="list-group-item list-group-item-action" onclick="showContent('Advanced Verilog Design & FPGA Implementation')">3. Advanced Verilog Design & FPGA Implementation</a>
-            <a class="list-group-item list-group-item-action" onclick="showContent('ASIC Design & Verification')">4. ASIC Design & Verification</a>
-            <a class="list-group-item list-group-item-action" onclick="showContent('Capstone Projects & Industry Readiness')">5. Capstone Projects & Industry Readiness</a>
+            <!-- Additional topics can be added here in similar structure -->
         </div>
-        <div id="content-area" class="mt-4 p-3 border"></div>
     </div>
+
+    <script>
+        function redirectToContent(topic) {
+            const baseUrl = 'content.html'; // Base URL for content pages
+            window.location.href = `${baseUrl}?topic=${topic}`;
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
