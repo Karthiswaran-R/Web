@@ -47,88 +47,54 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, push, onValue, set, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getDatabase, ref, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getDatabase, ref, set, onValue, remove, push } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         const firebaseConfig = {
-            apiKey: "AIzaSyD5BrJN0wKDF3wBTq2HRIt2uVo3CIpRGws",
-            authDomain: "vlsidesignhub-a8b1a.firebaseapp.com",
-            databaseURL: "https://vlsidesignhub-a8b1a-default-rtdb.firebaseio.com",
-            projectId: "vlsidesignhub-a8b1a",
-            storageBucket: "vlsidesignhub-a8b1a.appspot.com",
-            messagingSenderId: "171777137184",
-            appId: "1:171777137184:web:f20047ae13b783d5fdfa45",
-            measurementId: "G-SD3V3XBTPL"
+            apiKey: "AIzaSyADGcvUlAroGlAFzdR_7h99V0F9Hn30ndg",
+            authDomain: "vlsidesignhub0.firebaseapp.com",
+            projectId: "vlsidesignhub0",
+            storageBucket: "vlsidesignhub0.firebasestorage.app",
+            messagingSenderId: "905823632105",
+            appId: "1:905823632105:web:a8c6ee3faa4ab1af4a0e78",
+            measurementId: "G-XM8D01GD22"
         };
 
         // Initialize Firebase
         const app = initializeApp(firebaseConfig);
-        const database = getDatabase(app);
+        const analytics = getAnalytics(app);
         const auth = getAuth(app);
         const provider = new GoogleAuthProvider();
+        const database = getDatabase(app);
         const onlineUsersRef = ref(database, "onlineUsers");
         let currentUser = null;
 
-        // ✅ Google Sign-In (Popup)
         document.getElementById("googleLoginBtn").addEventListener("click", () => {
             signInWithPopup(auth, provider)
-    .then((result) => {
-        console.log("✅ User signed in:", result.user);
-        currentUser = result.user;
-        updateUI();
-        set(ref(database, `onlineUsers/${currentUser.uid}`), {
-            name: currentUser.displayName,
-            avatar: currentUser.photoURL
-        });
-    })
-    .catch(error => console.error("❌ Sign-in Error:", error));
-
                 .then((result) => {
-                    console.log("✅ User signed in:", result.user);
                     currentUser = result.user;
-                    updateUI();
                     set(ref(database, `onlineUsers/${currentUser.uid}`), {
                         name: currentUser.displayName,
                         avatar: currentUser.photoURL
                     });
                 })
-                .catch(error => console.error("❌ Sign-in Error:", error));
+                .catch((error) => console.error("Sign-in Error:", error));
         });
 
-        // ✅ Sign Out
         document.getElementById("signOutBtn").addEventListener("click", () => {
             if (currentUser) {
                 remove(ref(database, `onlineUsers/${currentUser.uid}`));
+                signOut(auth)
+                    .then(() => (currentUser = null))
+                    .catch((error) => console.error("Sign Out Error:", error));
             }
-            signOut(auth).then(() => {
-                currentUser = null;
-                updateUI();
-            }).catch(error => console.error("❌ Sign Out Error:", error));
         });
 
-        // ✅ Update UI
-        function updateUI() {
-            if (currentUser) {
-                document.getElementById("googleLoginBtn").style.display = "none";
-                document.getElementById("signOutBtn").style.display = "inline-block";
-                document.getElementById("message").disabled = false;
-                document.getElementById("sendBtn").disabled = false;
-            } else {
-                document.getElementById("googleLoginBtn").style.display = "inline-block";
-                document.getElementById("signOutBtn").style.display = "none";
-                document.getElementById("message").disabled = true;
-                document.getElementById("sendBtn").disabled = true;
-            }
-        }
-
-        // ✅ Track Online Users
         onValue(onlineUsersRef, (snapshot) => {
             const onlineUsersList = document.getElementById("onlineUsers");
             onlineUsersList.innerHTML = "";
-            snapshot.forEach(childSnapshot => {
+            snapshot.forEach((childSnapshot) => {
                 const user = childSnapshot.val();
                 const li = document.createElement("li");
                 li.className = "list-group-item";
@@ -137,17 +103,6 @@
             });
         });
 
-        // ✅ Detect Authentication State
-        onAuthStateChanged(auth, (user) => {
-            console.log("🔄 Auth state changed:", user);
-            if (user) {
-                currentUser = user;
-                updateUI();
-            } else {
-                currentUser = null;
-                updateUI();
-            }
-        });
     </script>
 
     <footer class="bg-dark text-light py-3">
@@ -156,5 +111,6 @@
             <p><i class="fas fa-cogs"></i> Designed By <strong>KARTHISWARAN R</strong></p>
         </div>
     </footer>
+
 </body>
 </html>
