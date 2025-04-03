@@ -6,21 +6,46 @@
     <title>Self Learning Platform - Verilog HDL & VHDL</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        .subheading {
+        .subheading{
             cursor: pointer;
             color: blue;
             text-decoration: underline;
         }
+        .quiz {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        .table {
+            table-layout: auto;
+            
+        }
+        code {
+    display: block;
+    background: #1e1e1e; /* Dark background for contrast */
+    color: #f8f8f8; /* Light text for readability */
+    padding: 10px; /* Increased padding for a cleaner look */
+    border-radius: 8px; /* Smooth rounded corners */
+    font-family: "Courier New", monospace;
+    font-size: 1.1em; /* Slightly larger font for readability */
+    overflow-x: auto;
+    line-height: 1.0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: left;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Fundamentals of Hardware Description Language (HDL)</h1>
+        <h1>Fundamentals of Verilog HDL & VHDL</h1>
         <div class="accordion" id="topicsAccordion">
             <div class="card">
                 <div class="card-header" id="headingVerilog">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseVerilog" aria-expanded="false" aria-controls="collapseVerilog">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseVerilog" aria-expanded="true" aria-controls="collapseVerilog">
                             Verilog HDL
                         </button>
                     </h2>
@@ -31,7 +56,7 @@
                             <div class="card">
                                 <div class="card-header" id="headingOne">
                                     <h2 class="mb-0">
-                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                             1. Introduction to Verilog HDL
                                         </button>
                                     </h2>
@@ -71,26 +96,214 @@
                                                 Verilog remains a cornerstone in digital design, particularly in FPGA and ASIC development, due to its robust simulation and synthesis capabilities.
                                             </p>
                                         </div>
-                                        <div class="subheading" onclick="redirectToContent('verilog-vs-vhdl')">1.3 Verilog vs. VHDL: Key Differences</div>
-                                        <div class="subheading" onclick="redirectToContent('applications-verilog')">1.4 Applications of Verilog in FPGA and ASIC Design</div>
+                                        <div class="subheading" data-toggle="collapse" data-target="#verilog-vs-vhdl" onclick="redirectToContent('verilog-vs-vhdl')">1.3 Verilog vs. VHDL: Key Differences</div>
+                                        <div id="verilog-vs-vhdl" class="collapse">
+                                            <p><strong>Verilog vs. VHDL: Key Differences</strong></p>
+                                            <p>Verilog and VHDL are the two primary HDLs, each with unique characteristics that cater to different design needs.</p>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Features</th>
+                                                        <th>Verilog</th>
+                                                        <th>VHDL</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody><tr>
+                                                    <td> Syntax </td>
+                                                    <td> C-like Concise </td>
+                                                    <td> Ada-like, verbose </td>
+                                                </tr>
+                                                <tr><td> Data Types </td>
+                                                    <td> Limited,Basic Types </td>
+                                                    <td> Strongly typed, complex </td>
+                                                </tr>
+                                                <tr><td> Design Style </td>
+                                                <td> Procedural & Structural </td>
+                                            <td> Mostly structural </td></tr>
+                                            <tr><td> Usage </td>
+                                            <td> widely in ASIC & FPGA </td>
+                                        <td> Common in defense & aerospace </td></tr>
+                                        <tr>
+                                            <td> Learning Curve </td>
+                                            <td> Easier to learn </td>
+                                            <td> Steeper, more rigorous </td>
+                                        </tr>
+                                            </tbody>
+                                            </table>
+                                            <p><strong> When to Use Each Language </strong></p>
+                                            <p><ul><li><strong> Verilog: </strong> Ideal for quick design cycles, commonly used in commercial ASICs and FPGAs. </li>
+                                            <li><strong> VHDL: </strong> Preferred in industries requiring strict safety and design standards, like aerospace and defense. </li></ul></p>
+                                            <p> The choice between Verilog and VHDL often depends on project requirements, existing toolchains, and industry standards. </p>
+                                        </div>
+                                        <div class="subheading" data-toggle="collapse" data-target="#applications-verilog" onclick="redirectToContent('applications-verilog')"> 1.4 Applications of Verilog in FPGA and ASIC Design </div>
+                                        <div id="applications-verilog" class="collapse">
+                                            <p><strong> Applications of Verilog in FPGA and ASIC Design </strong></p>
+                                            <p> Verilog HDL is pivotal in digital system design, particularly in <strong> (Field-Programmable Gate Array) </strong> and <strong> (Application-Specific Integrated Circuit) </strong> development.</p>
+                                            <ol><li> <strong> FPGA Design </strong>
+                                                <ul><li> <strong> Hardware: </strong> FPGAs can be reprogrammed for different applications, making them ideal for prototyping. </li>
+                                                    <li><strong>Verilog’s Role: </strong>Provides a streamlined path from design to synthesis and implementation on FPGA platforms. </li>
+                                                    <li><strong>Applications: </strong> Used in high-speed communication systems, image processing, and machine learning accelerators. </li></ul>
+                                            </li>
+                                            <li><strong> ASIC Design </strong>
+                                                <ul><li><strong> Custom Hardware: </strong> ASICs are designed for specific tasks, offering optimized performance and power efficiency. </li>
+                                                <li><strong> Verilog in ASICs: </strong>Allows precise control over hardware resources and supports advanced synthesis and verification techniques. </li>
+                                                <li><strong> Common Uses: </strong> Found in processors, graphics chips, and specialized hardware like SoCs (System-on-Chips). </li>
+                                                </ul>
+                                            </li>
+                                            <li><strong> Digital System Design </strong>
+                                            <ul><li><strong> Versatile Modeling: </strong> Verilog enables the creation of complex digital systems including ALUs, memory controllers, and peripheral interfaces. </li>
+                                            <li><strong> Finite State Machines (FSMs): </strong> Essential for control logic design in embedded systems. </li></ul></li>
+                                            <li><strong> Verification and Testing </strong>
+                                                <ul><li><strong> Testbenches: </strong> Verilog is widely used for creating testbenches that simulate real-world scenarios. </li>
+                                                <li><strong> Advanced Verification: </strong> Combined with SystemVerilog, it supports methodologies like UVM (Universal Verification Methodology) for robust verification environments. </li></ul>
+                                            </li>
+                                        </ol>
+                                        </div>
+                                        <p class="quiz"><a href="quiz.html" target="quiz">1.5 Basic's of Verilog - Quiz</a></p>
+                                        </di</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="card">
                                  <div class="card-header" id="headingTwo">
                                     <h3 class="mb-0">
-                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
                                            2. Verilog Basics: Syntax and Structure
                                         </button>
                                     </h3>
                                 </div>
                                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#verilogTopics">
                                     <div class="card-body">
-                                        <div class="subheading" onclick="redirectToContent('data-types-operators')">2.1 Data Types and Operators</div>
-                                        <div class="subheading" onclick="redirectToContent('modules-ports-nets')">2.2 Modules, Ports, and Nets</div>
-                                        <div class="subheading" onclick="redirectToContent('procedural-continuous')">2.3 Procedural vs. Continuous Assignments</div>
-                                        <div class="subheading" onclick="redirectToContent('always-blocks')">2.4 Always Blocks and Sensitivity Lists</div>
-                                        <div class="subheading" onclick="redirectToContent('blocking-nonblocking')">2.5 Blocking vs. Non-blocking Assignments</div>
+                                        <div class="subheading" data-toggle="collapse" data-target="#data-types-operators" onclick="redirectToContent('data-types-operators')">2.1 Data Types and Operators</div>
+                                        <div id="data-types-operators" class="collapse">
+                                            <p><strong> Data Types and Operators </strong></p>
+                                            <ol><li> Data Types </li>
+                                                <p>In Verilog, data types are used to define the kind of data a variable can hold. The most commonly used data types include:</p>
+                                                <ol><li><strong> reg: </strong> Used for variables that store values in procedural blocks (always, initial). <code>
+                                                    reg [7:0] data; // 8-bit register-transfer
+                                                    reg no; // single-bit register-transfer
+                                                </code></li></br>
+                                                <li><strong>wire: </strong>Represents physical connections between hardware elements, typically used in continuous assignments. <code>
+                                                    wire signal; // Simple wire declaration
+                                                </code></li></br>
+                                            <li><strong>integer:</strong> Used for variables in procedural code, typically for loops or indexing. <code>integer i;</code></li></br>
+                                        <li><strong>real: </strong>Stores real (floating-point) numbers, not widely used in synthesizable designs. 
+                                            <code>real float_val = 3.14;</code></li></br>
+                                        <li><strong>parameter:</strong> Constant values, useful for defining module configurations. 
+                                            <code>parameter WIDTH = 8;</code></li></ol></br>
+                                            <li> Operators </li>
+                                            <p>Verilog supports a wide range of operators, including:
+                                                <ol><li><strong>Arithmetic Operators: </strong>Perform basic arithmetic operations. 
+                                            <code>reg [3:0] a = 4;
+                                            reg [3:0] b = 2;
+                                            reg [3:0] sum;
+                                            sum = a + b; // sum = 6</code>
+                                            </li></br>
+                                            <li><p> <strong>Bitwise Operators: </strong>Perform bitwise operations on vectors. 
+                                                <code>wire [3:0] c = 4'b1100;
+                                                wire [3:0] d = 4'b1010;
+                                                wire [3:0] result;
+                                                result = c & d; // result = 4'b1000</code></p></li></br>
+                                                <li><p><strong>Logical Operators:</strong> Evaluate logical conditions. 
+                                                    <code>cond1 = 1'b1;
+                                                    wire cond2 = 1'b0;
+                                                    wire logic_result;
+                                                    logic_result = cond1 && cond2; // logic_result = 0</code></p></li></br>
+                                                    <li><p><strong>Relational Operators: </strong>Compare values. 
+                                                        <code>wire is_greater = (a > b); // Evaluates to 1 if a is greater than b</code></p></li></br>
+                                                        <li><p><strong>Equality Operators:</strong> Compare equality. 
+                                                            <code>wire is_equal = (a == b); // Checks if a is equal to b</code></p></li></ol></br>
+                                        </li></ol>
+                                        </ol>
+                                            </li>
+                                        </ol>
+                                        </div>
+                                        <div class="subheading" data-toggle="collapse" data-target="#modules-ports-nets" onclick="redirectToContent('modules-ports-nets')">2.2 Modules, Ports, and Nets</div>
+                                        <div id="modules-ports-nets" class="collapse">
+                                            <p><strong>Modules</strong>
+                                                <p>Modules are the fundamental building blocks of a Verilog design. They define the hardware components and their behavior.
+                                                <code>module and_gate (
+                                                    input wire a,
+                                                    input wire b,
+                                                    output wire y
+                                                );
+                                                    assign y = a & b;
+                                                endmodule</code></p></p></br>
+                                                <p><strong>Ports</strong></p>
+                                                    <p>Ports serve as an interface for modules to communicate with external components.
+                                                        <li><strong>Input: </strong>Receives data into the module. </li>
+                                                        <li><strong>Output: </strong>Sends data out of the module. </li>
+                                                        <li><strong>Inout: </strong>Bidirectional data flow. </li>
+                                                    <code>module example_module (
+                                                        input wire clk,
+                                                        input wire reset,
+                                                        output reg out_signal
+                                                    );</code></p>
+                                                    <p><strong>Nets</strong></p>
+                                                    <p>Nets represent physical connections in the hardware. wire is the most common net type, which connects signals between modules.
+                                                    <code>wire internal_wire;
+                                                    assign internal_wire = clk & reset;</code></p>
+                                        </div>
+                                        <div class="subheading" data-toggle="collapse" data-target="#procedural-continuous" onclick="redirectToContent('procedural-continuous')">2.3 Procedural vs. Continuous Assignments</div>
+                                        <div id="procedural-continuous" class="collapse">
+                                            <p><strong>Procedural vs. Continuous Assignments</strong></p>
+                                            <ol>
+                                            <li><strong>Procedural Assignments</strong></li>
+                                            <p>Procedural assignments are used within always or initial blocks. They are useful for describing sequential and combinational logic.
+                                                <code>reg [3:0] count;
+                                                always @(posedge clk or negedge reset) begin
+                                                    if (!reset)
+                                                        count <= 0;
+                                                    else
+                                                        count <= count + 1;
+                                                end</code></p></br>
+                                                <li><p><strong> Continuous Assignments</strong></p>
+                                                    <p>Continuous assignments use the assign keyword for logic that is constantly evaluated.
+                                                    <code>wire sum;
+                                                    assign sum = a + b; // sum updates automatically when a or b changes</code></p></li></br>
+                                            </ol>
+                                        </div>
+                                        <div class="subheading" data-toggle="collapse" data-target="#always-blocks" onclick="redirectToContent('always-blocks')">2.4 Always Blocks and Sensitivity Lists</div>
+                                        <div id="always-blocks" class="collapse">
+                                            <p><strong>Always Blocks and Sensitivity Lists</strong></p>
+                                            <ol><li><p><strong>Always Block</strong></p>
+                                                <p>The always block is used to model both combinational and sequential logic.
+                                                <code>always @(posedge clk or negedge reset) begin
+                                                    if (!reset)
+                                                        data <= 8'b0;
+                                                    else
+                                                        data <= data + 1;
+                                                end</code></p></li></br>
+                                                <li><p><strong>Sensitivity Lists</strong></p>
+                                                    <p><ul><li><strong>Logic: </strong>Uses always @(*) to automatically detect changes in any input. </li>
+                                                    <li><strong> Logic:</strong> Typically triggered by posedge or negedge of a clock or reset signal. </li>
+                                                <code>always @(*) begin
+                                                    case (state)
+                                                        2'b00: out = 1;
+                                                        2'b01: out = 2;
+                                                        default: out = 0;
+                                                    endcase
+                                                end</code></p></li></br>
+                                                </ol>
+                                        </div>
+                                        <div class="subheading" data-toggle="collapse" data-target="#blocking-nonblocking" onclick="redirectToContent('blocking-nonblocking')">2.5 Blocking vs. Non-blocking Assignments</div>
+                                        <div id="blocking-nonblocking" class="collapse">
+                                            <p><strong>Blocking vs. Non-blocking Assignments</strong></p>
+                                                <p><strong>Blocking (=) Assignments</strong>Blocking assignments execute sequentially within a procedural block.
+                                                    <code>always @(*) begin
+                                                        a = b;
+                                                        c = a; // Executes only after a = b is complete
+                                                    end</code></p></br>
+                                                    <p><strong>Non-blocking (<=) Assignments</strong>
+                                                        Non-blocking assignments allow parallel execution and are crucial for flip-flop behavior in sequential logic.
+                                                        <code>always @(posedge clk) begin
+                                                            a <= b;
+                                                            c <= a; // Both assignments happen in parallel
+                                                        end</code></p></br>
+                                                        <p><strong>When to Use Each</strong>
+                                                            <ul><li><strong> Blocking (=): </strong>Use in combinational logic (always @(*)). </li>
+                                                            <li><strong>Non-Blocking (<=): </strong> Use in sequential logic (always @(posedge clk)). </li></ul></p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +317,50 @@
                                 </div>
                                 <div id="collapsethree" class="collapse" aria-labelledby="headingthree" data-parent="#verilogTopics">
                                     <div class="card-body">
-                                        <div class="subheading" onclick="redirectToContent('Basic-Gates-Implementation')">3.1 Basic Gates Implementation</div>
+                                        <div class="subheading" data-toggle="collapse" data-target="#Basic-Gates-Implementation" onclick="redirectToContent('Basic-Gates-Implementation')">3.1 Basic Gates Implementation</div>
+                                        <div id="Basic-Gates-Implementation" class="collapse">
+                                            <p><strong>Basic Gates Implementation</strong></p>
+                                            <p>Basic gates such as AND, OR, NOT, NAND, NOR, EXOR, EXNOR, BUFF, NOTIF0, NOTIF1, BUFFIF0, and BUFFIF1 are the fundamental building blocks of digital logic. These gates can be implemented in Verilog using both structural and behavioral modeling.</p>
+                                            <p><strong>Examples : </strong></p>
+                                            <p><strong>1. AND Gate</strong></br>
+                                                <code>module AND_Gate (input A, input B, output Y);
+assign Y = A & B;
+endmodule</code></br>
+<strong>2. OR Gate</strong></br>
+<code>module OR_Gate (input A, input B, output Y);
+assign Y = A | B ;
+endmodule
+</code>
+</p>
+<p><strong>3. NOT Gate</strong><code>module NOT_Gate (input A, output Y);
+    assign Y = ~A;
+    endmodule</code></p></br>
+    <p><strong>4. NAND Gate</strong><code>module NAND_Gate (input A, input B, output Y);
+        assign Y = A & B;
+        endmodule</code></p></br>
+<p><strong>5. NOR Gate</strong><code>module NOR_Gate (input A, input B, output Y);
+    assign Y = ~(A | B) ;
+    endmodule</code></p></br>
+    <p><strong>6. EXOR Gate</strong><code>module EXOR_Gate (input A, input B, output Y);
+        assign Y = A ^ B ;
+        endmodule
+        </code></p></br>
+        <p><strong>7. EXNOR Gate</strong><code>module EXOR_Gate (input A, input B, output Y);
+            assign Y = ~(A ^ B) ;
+            endmodule
+            </code></strong></p>
+            <p><strong>8. BUFF Gate</strong><code>module BUFF_Gate (input A, output Y);
+                assign Y = A ;
+                endmodule</code></p></br>
+                <p><strong>9. NOTIF0 (Tri-State) Gate </strong><code>module NOTIF0 (output wire Y, input wire A, input wire E);
+                    assign Y = (~A) & ~E ? (~A) : 1'bz;
+                  endmodule
+                  </code></p>
+                  <p><strong> 10. NOTIF1 (Tri-State) vate </strong>module NOTIF1 (output wire Y, input wire A, input wire E);
+                    assign Y = (~A) & E ? (~A) : 1'bz;
+                  endmodule
+                  <code<</p>
+                                        </div>
                                         <div class="subheading" onclick="redirectToContent('Multiplexers-Decoders-and-Encoders')">3.2 Multiplexers, Decoders, and Encoders</div>
                                         <div class="subheading" onclick="redirectToContent('Arithmetic-Circuits')">3.3 Arithmetic Circuits: Adders, Subtractors, ALU</div>
                                         <div class="subheading" onclick="redirectToContent('Code-Optimization')">3.4 Code Optimization for Synthesis</div>
@@ -240,7 +496,7 @@
                                     </div>
                                     <div id="collapseOnes" class="collapse" aria-labelledby="headingOnes" data-parent="#SystemVerilog">
                                         <div class="card-body">
-                                            <div class="subheading" onclick="redirectToContent('introHDL'')">1.1 What is HDL?</div>
+                                            <div class="subheading" onclick="redirectToContent('introHDL')">1.1 What is HDL?</div>
                                             <div class="subheading" onclick="redirectToContent('history-evolution')">1.2 History and Evolution of Verilog</div>
                                             <div class="subheading" onclick="redirectToContent('verilog-vs-vhdl')">1.3 Verilog vs. VHDL: Key Differences</div>
                                             <div class="subheading" onclick="redirectToContent('applications-verilog')">1.4 Applications of Verilog in FPGA and ASIC Design</div>
@@ -257,7 +513,7 @@
                 <div class="card">
                     <div class="card-header" id="headingVHDL">
                         <h4 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseVHDL" aria-expanded="false" aria-controls="collapseVHDL">
+                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseVHDL" aria-expanded="true" aria-controls="collapseVHDL">
                                 VHDL
                             </button>
                         </h4>
@@ -275,7 +531,7 @@
                                     </div>
                                     <div id="collapseOnev" class="collapse" aria-labelledby="headingOnev" data-parent="#VHDLTopics">
                                         <div class="card-body">
-                                            <div class="subheading" onclick="redirectToContent('introHDL'')">1.1 What is HDL?</div>
+                                            <div class="subheading" onclick="redirectToContent('introHDL')">1.1 What is HDL?</div>
                                             <div class="subheading" onclick="redirectToContent('history-evolution')">1.2 History and Evolution of Verilog</div>
                                             <div class="subheading" onclick="redirectToContent('verilog-vs-vhdl')">1.3 Verilog vs. VHDL: Key Differences</div>
                                             <div class="subheading" onclick="redirectToContent('applications-verilog')">1.4 Applications of Verilog in FPGA and ASIC Design</div>
@@ -288,7 +544,7 @@
                 </div>
             </div>
     <script>
-        $(document).ready(function() {
+    $(document).ready(function() {
             $('.heading').click(function(e) {
                 e.preventDefault();
                 var target = $(this).data('target');
@@ -296,7 +552,6 @@
             });
         });
     </script>
-    
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
